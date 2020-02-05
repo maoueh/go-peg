@@ -116,8 +116,8 @@ parser, _ := peg.NewParser(`
 `)
 
 // Evaluator
-var eval func(ast *Ast) int
-eval = func(ast *Ast) int {
+var eval func(ast *peg.Ast) int
+eval = func(ast *peg.Ast) int {
     if ast.Name == "NUMBER" {
         val, _ := strconv.Atoi(ast.Token)
         return val
@@ -150,7 +150,7 @@ eval = func(ast *Ast) int {
 parser.EnableAst()
 input := " 1 + 2 * 3 * (4 - 5 + 6) / 7 - 8 "
 ret, _ := parser.ParseAndGetValue(input, nil)
-ast := ret.(*Ast)
+ast := ret.(*peg.Ast)
 
 // Optimize AST
 opt := peg.NewAstOptimizer(nil)
