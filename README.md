@@ -20,7 +20,7 @@ If you need a C++ version, please see [*cpp-peglib*](https://github.com/yhirose/
 
 ```go
 // Create a PEG parser
-parser, _ := NewParser(`
+parser, _ := peg.NewParser(`
     # Simple calculator
     EXPR         ←  ATOM (BINOP ATOM)*
     ATOM         ←  NUMBER / '(' EXPR ')'
@@ -90,7 +90,7 @@ Word expression
 ---------------
 
 ```go
-parser, _ := NewParser(`
+parser, _ := peg.NewParser(`
     ROOT         ←  'hello' 'world'
     %whitespace  ←  [ \t\r\n]*
     %word        ←  [a-z]+
@@ -105,7 +105,7 @@ AST generation
 
 ```go
 // Create a PEG parser
-parser, _ := NewParser(`
+parser, _ := peg.NewParser(`
     EXPRESSION       <-  TERM (TERM_OPERATOR TERM)*
     TERM             <-  FACTOR (FACTOR_OPERATOR FACTOR)*
     FACTOR           <-  NUMBER / '(' EXPRESSION ')'
@@ -153,7 +153,7 @@ ret, _ := parser.ParseAndGetValue(input, nil)
 ast := ret.(*Ast)
 
 // Optimize AST
-opt := NewAstOptimizer(nil)
+opt := peg.NewAstOptimizer(nil)
 ast = opt.Optimize(ast, nil)
 
 // Evaluate AST
